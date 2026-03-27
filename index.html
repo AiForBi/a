@@ -1,612 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>AiForBiz — AI Business Audit</title>
-
-<meta name="description" content="Get a personalized AI audit for your business and discover where automation can save time and money.">
-
-<!-- Meta Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s){
-    if(f.fbq) return;
-    n=f.fbq=function(){
-      n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments);
-    };
-    if(!f._fbq) f._fbq=n;
-    n.push=n;
-    n.loaded=!0;
-    n.version='2.0';
-    n.queue=[];
-    t=b.createElement(e);
-    t.async=!0;
-    t.src=v;
-    s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s);
-  }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-
-  fbq('init', '25936076819410061');
-  fbq('track', 'PageView');
-</script>
-<!-- End Meta Pixel Code -->
-
-<style>
-
-:root{
---bg:#020814;
---card:#0b1526;
---glass:rgba(255,255,255,.06);
---line:rgba(255,255,255,.12);
---text:#f4f7ff;
---muted:#9fb0c9;
---blue:#3b82f6;
---blue2:#1d4ed8;
-}
-
-*{box-sizing:border-box}
-
-body{
-margin:0;
-font-family:Inter,system-ui,Arial,sans-serif;
-color:var(--text);
-
-background:
-radial-gradient(circle at top, rgba(59,130,246,.25), transparent 35%),
-linear-gradient(180deg,#020814,#040d1d 60%,#020814);
-
-min-height:100vh;
-}
-
-.wrapper{
-max-width:1200px;
-margin:auto;
-padding:40px 20px;
-}
-
-.hero{
-display:grid;
-grid-template-columns:1.1fr .9fr;
-gap:60px;
-align-items:center;
-}
-
-.brand{
-display:flex;
-align-items:center;
-gap:12px;
-font-size:18px;
-font-weight:800;
-letter-spacing:-.02em;
-margin-bottom:20px;
-}
-
-.brand-mark{
-width:42px;
-height:42px;
-border-radius:14px;
-background:linear-gradient(180deg,#4f8cff,#1d4ed8);
-box-shadow:0 12px 24px rgba(29,78,216,.35);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:16px;
-font-weight:800;
-color:#fff;
-flex:0 0 42px;
-}
-
-h1{
-font-size:58px;
-line-height:1.05;
-letter-spacing:-.03em;
-margin:0 0 20px;
-}
-
-.subtitle{
-font-size:20px;
-color:var(--muted);
-margin-bottom:30px;
-}
-
-.features{
-display:grid;
-gap:16px;
-margin-bottom:40px;
-}
-
-.feature{
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-padding:16px 18px;
-border-radius:16px;
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:16px;
-margin-top:30px;
-}
-
-.stat{
-padding:18px;
-border-radius:16px;
-border:1px solid rgba(255,255,255,.08);
-background:rgba(255,255,255,.04);
-text-align:center;
-}
-
-.stat strong{
-display:block;
-font-size:30px;
-margin-bottom:4px;
-}
-
-.form{
-background:var(--glass);
-border:1px solid var(--line);
-border-radius:22px;
-padding:28px;
-backdrop-filter:blur(12px);
-box-shadow:0 20px 60px rgba(0,0,0,.6);
-}
-
-.form h2{
-margin-top:0;
-margin-bottom:10px;
-}
-
-.form p{
-color:var(--muted);
-font-size:15px;
-margin-bottom:22px;
-}
-
-.field{
-margin-bottom:14px;
-}
-
-input,textarea,select{
-width:100%;
-padding:14px;
-border-radius:14px;
-border:1px solid rgba(255,255,255,.14);
-background:rgba(255,255,255,.05);
-color:white;
-font-size:15px;
-outline:none;
-}
-
-input::placeholder,
-textarea::placeholder{
-color:#9fb0c9;
-}
-
-textarea{
-min-height:90px;
-resize:vertical;
-}
-
-button{
-width:100%;
-padding:16px;
-border-radius:16px;
-border:none;
-background:linear-gradient(180deg,#4f8cff,#1d4ed8);
-color:white;
-font-size:17px;
-font-weight:700;
-cursor:pointer;
-margin-top:8px;
-transition:.2s;
-}
-
-button:hover{
-transform:translateY(-1px);
-}
-
-.success{
-display:none;
-background:#1a2f22;
-border:1px solid #2f6f4c;
-padding:18px;
-border-radius:14px;
-margin-top:20px;
-}
-
-.section{
-margin-top:120px;
-}
-
-.section h2{
-font-size:40px;
-margin-bottom:20px;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-}
-
-.card{
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-padding:22px;
-border-radius:18px;
-}
-
-.card h3{
-margin-top:0;
-}
-
-.footer{
-margin-top:120px;
-text-align:center;
-color:var(--muted);
-font-size:14px;
-}
-
-@media(max-width:900px){
-
-.hero{
-grid-template-columns:1fr;
-}
-
-.stats{
-grid-template-columns:1fr;
-}
-
-.cards{
-grid-template-columns:1fr;
-}
-
-h1{
-font-size:40px;
-}
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<!-- Meta Pixel Code (noscript) -->
-<noscript>
-  <img
-    height="1"
-    width="1"
-    style="display:none"
-    src="https://www.facebook.com/tr?id=25936076819410061&ev=PageView&noscript=1"
-    alt=""
+  <title>AiForBiz — AI Business Audit</title>
+  <meta
+    name="description"
+    content="Get a personalized AI audit for your business and discover where automation can save time, reduce operating costs, and create faster ROI."
   />
-</noscript>
-<!-- End Meta Pixel Code (noscript) -->
 
-<div class="wrapper">
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq) return;
+      n=f.fbq=function(){
+        n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments);
+      };
+      if(!f._fbq) f._fbq=n;
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-<div class="hero">
+    fbq('init', '25936076819410061');
+    fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
 
-<div>
-
-<div class="brand">
-  <div class="brand-mark">AI</div>
-  <div>AiForBiz</div>
-</div>
-
-<h1>
-Get a personalized AI audit
-for your business
-</h1>
-
-<div class="subtitle">
-Discover which processes can be automated, where AI can create the fastest ROI, and what to implement first.
-</div>
-
-<div class="features">
-
-<div class="feature">
-Identify repetitive workflows across operations, sales and support
-</div>
-
-<div class="feature">
-Find automation opportunities that can save dozens of hours every month
-</div>
-
-<div class="feature">
-Get practical AI implementation recommendations for your company
-</div>
-
-</div>
-
-<div class="stats">
-
-<div class="stat">
-<strong>3-5</strong>
-Automation opportunities
-</div>
-
-<div class="stat">
-<strong>Fast</strong>
-ROI-focused AI use cases
-</div>
-
-<div class="stat">
-<strong>Clear</strong>
-Implementation roadmap
-</div>
-
-</div>
-
-</div>
-
-<div class="form">
-
-<h2>Request your AI audit</h2>
-
-<p>
-Fill out the form and choose your preferred contact method.
-</p>
-
-<div class="field">
-<input id="name" placeholder="Full name">
-</div>
-
-<div class="field">
-<input id="company" placeholder="Company name">
-</div>
-
-<div class="field">
-<input id="email" placeholder="Work email">
-</div>
-
-<div class="field">
-<input id="website" placeholder="Website">
-</div>
-
-<div class="field">
-<textarea id="business" placeholder="What does your business do?"></textarea>
-</div>
-
-<div class="field">
-<textarea id="problem" placeholder="Biggest bottleneck right now"></textarea>
-</div>
-
-<div class="field">
-<select id="contact">
-<option value="Telegram">Telegram</option>
-<option value="WhatsApp">WhatsApp</option>
-</select>
-</div>
-
-<div class="field">
-<input id="messenger" placeholder="Telegram username or WhatsApp number">
-</div>
-
-<button onclick="sendLead()">Get My AI Audit</button>
-
-<div class="success" id="success">
-Request received ✅  
-We will contact you shortly.
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-
-<h2>What you'll get</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>Automation Opportunities</h3>
-<p>We identify the processes in your company that can be automated with AI.</p>
-</div>
-
-<div class="card">
-<h3>Priority by ROI</h3>
-<p>See which AI use cases will deliver the biggest return on investment first.</p>
-</div>
-
-<div class="card">
-<h3>Implementation Roadmap</h3>
-<p>Clear steps showing where to start implementing AI in your business.</p>
-</div>
-
-</div>
-
-</div>
-
-<div class="footer">
-
-AiForBiz helps companies discover automation opportunities and implement AI solutions that deliver measurable business value.
-
-</div>
-
-</div>
-
-<script>
-
-const BOT_TOKEN="YOUR_TELEGRAM_BOT_TOKEN"
-const CHAT_ID="YOUR_TELEGRAM_CHAT_ID"
-
-async function sendLead(){
-
-const name=document.getElementById("name").value
-const company=document.getElementById("company").value
-const email=document.getElementById("email").value
-const website=document.getElementById("website").value
-const business=document.getElementById("business").value
-const problem=document.getElementById("problem").value
-const contact=document.getElementById("contact").value
-const messenger=document.getElementById("messenger").value
-
-if(!name||!company||!email){
-
-alert("Please fill required fields")
-return
-
-}
-
-const text=
-`🔥 New AI Audit Lead
-
-Name: ${name}
-Company: ${company}
-Email: ${email}
-Website: ${website}
-
-Preferred contact: ${contact}
-Messenger: ${messenger}
-
-Business:
-${business}
-
-Bottleneck:
-${problem}`
-
-const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-chat_id:CHAT_ID,
-text:text
-})
-})
-
-if(response.ok){
-  document.getElementById("success").style.display="block"
-
-  if (typeof fbq === "function") {
-    fbq('track', 'Lead');
-  }
-} else {
-  alert("Something went wrong. Please try again.");
-}
-
-}
-
-</script>
-
-</body>
-</html>      --max:1200px;
+  <style>
+    :root{
+      --bg:#04101d;
+      --bg2:#081426;
+      --card:#0b1526;
+      --glass:rgba(255,255,255,.06);
+      --glass-2:rgba(255,255,255,.04);
+      --line:rgba(255,255,255,.12);
+      --line-2:rgba(255,255,255,.08);
+      --text:#f4f7ff;
+      --muted:#9fb0c9;
+      --blue:#4f8cff;
+      --blue2:#1d4ed8;
+      --green:#18c37e;
+      --danger:#ff6b6b;
+      --shadow:0 20px 60px rgba(0,0,0,.45);
+      --radius:22px;
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
+
     body{
       margin:0;
-      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      font-family:Inter,system-ui,Arial,sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at top left, rgba(90,148,255,.18), transparent 28%),
-        radial-gradient(circle at top right, rgba(23,199,122,.10), transparent 26%),
-        linear-gradient(180deg,#04101d 0%, #081425 45%, #06111f 100%);
+        radial-gradient(circle at top left, rgba(59,130,246,.22), transparent 30%),
+        radial-gradient(circle at top right, rgba(79,140,255,.10), transparent 26%),
+        linear-gradient(180deg,#020814,#071221 58%,#04101d);
       min-height:100vh;
     }
 
-    a{color:inherit;text-decoration:none}
-    button,input,select,textarea{font:inherit}
-
-    .container{
-      width:min(var(--max), calc(100% - 32px));
-      margin:0 auto;
+    a{
+      color:inherit;
+      text-decoration:none;
     }
 
-    .site-header{
-      position:sticky;
-      top:0;
-      z-index:40;
-      backdrop-filter:blur(14px);
-      background:rgba(5,14,28,.62);
-      border-bottom:1px solid rgba(255,255,255,.06);
+    .wrapper{
+      max-width:1200px;
+      margin:auto;
+      padding:24px 20px 60px;
     }
 
-    .site-header__inner{
+    .topbar{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:18px;
-      min-height:78px;
+      gap:20px;
+      margin-bottom:40px;
     }
 
     .brand{
       display:flex;
       align-items:center;
       gap:12px;
+      font-size:18px;
       font-weight:800;
       letter-spacing:-.02em;
-      white-space:nowrap;
     }
 
-    .brand__mark{
-      width:40px;
-      height:40px;
+    .brand-mark{
+      width:42px;
+      height:42px;
       border-radius:14px;
-      background:
-        linear-gradient(180deg, rgba(90,148,255,.9), rgba(37,99,235,.92));
-      box-shadow:0 12px 24px rgba(37,99,235,.25);
+      background:linear-gradient(180deg,#4f8cff,#1d4ed8);
+      box-shadow:0 12px 24px rgba(29,78,216,.35);
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:18px;
+      font-size:15px;
+      font-weight:800;
+      color:#fff;
+      flex:0 0 42px;
     }
 
-    .nav{
-      display:flex;
-      gap:18px;
-      align-items:center;
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    .nav a:hover{color:#fff}
-
-    .btn{
+    .topbar-btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
-      min-height:54px;
-      padding:0 24px;
-      border:none;
-      border-radius:16px;
-      font-weight:800;
-      font-size:16px;
-      cursor:pointer;
-      transition:.2s ease;
-    }
-
-    .btn:hover{transform:translateY(-1px)}
-    .btn-primary{
-      color:#fff;
-      background:linear-gradient(180deg, var(--blue), var(--blue-2));
-      box-shadow:0 18px 34px rgba(37,99,235,.34);
-    }
-
-    .btn-secondary{
-      color:#e8f0ff;
-      background:rgba(255,255,255,.05);
+      min-height:46px;
+      padding:0 18px;
+      border-radius:14px;
       border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      color:#fff;
+      font-weight:700;
+      transition:.2s;
+    }
+
+    .topbar-btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
     }
 
     .hero{
-      padding:56px 0 34px;
-    }
-
-    .hero__grid{
       display:grid;
       grid-template-columns:1.08fr .92fr;
-      gap:30px;
+      gap:36px;
       align-items:start;
     }
 
@@ -616,227 +142,244 @@ if(response.ok){
       gap:10px;
       padding:10px 14px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
       background:rgba(255,255,255,.05);
-      color:#dbe7ff;
+      border:1px solid rgba(255,255,255,.10);
+      color:#dce8ff;
       font-size:13px;
       margin-bottom:18px;
     }
 
-    .eyebrow__dot{
+    .eyebrow-dot{
       width:8px;
       height:8px;
       border-radius:50%;
       background:var(--green);
-      box-shadow:0 0 0 6px rgba(23,199,122,.10);
+      box-shadow:0 0 0 6px rgba(24,195,126,.10);
     }
 
     h1{
+      font-size:clamp(40px,6vw,68px);
+      line-height:1.02;
+      letter-spacing:-.045em;
       margin:0 0 18px;
-      font-size:clamp(42px, 6vw, 72px);
-      line-height:1.01;
-      letter-spacing:-.05em;
-      max-width:760px;
+      max-width:720px;
     }
 
-    .hero__subtitle{
+    .subtitle{
       font-size:20px;
       line-height:1.65;
       color:var(--muted);
-      max-width:760px;
       margin-bottom:28px;
+      max-width:700px;
     }
 
-    .hero__points{
+    .features{
       display:grid;
       gap:14px;
-      margin:0 0 28px;
-      padding:0;
-      list-style:none;
-      max-width:760px;
+      margin-bottom:28px;
+      max-width:700px;
     }
 
-    .hero__points li{
+    .feature{
       display:flex;
-      gap:14px;
+      gap:12px;
       align-items:flex-start;
-      border:1px solid rgba(255,255,255,.08);
       background:rgba(255,255,255,.04);
-      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
       padding:15px 16px;
-      color:#eef4ff;
+      border-radius:16px;
     }
 
-    .icon-badge{
-      width:30px;
-      height:30px;
-      flex:0 0 30px;
+    .feature-icon{
+      width:28px;
+      height:28px;
+      border-radius:10px;
+      flex:0 0 28px;
       display:flex;
       align-items:center;
       justify-content:center;
-      border-radius:12px;
-      background:rgba(90,148,255,.15);
-      border:1px solid rgba(90,148,255,.24);
-      font-size:15px;
+      background:rgba(79,140,255,.14);
+      border:1px solid rgba(79,140,255,.22);
+      font-size:14px;
     }
 
-    .hero__actions{
+    .hero-actions{
       display:flex;
-      flex-wrap:wrap;
       gap:12px;
+      flex-wrap:wrap;
       margin-bottom:18px;
     }
 
-    .hero__micro{
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:54px;
+      padding:0 22px;
+      border-radius:16px;
+      font-size:16px;
+      font-weight:800;
+      border:none;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .btn-primary{
+      background:linear-gradient(180deg,#5a94ff,#2563eb);
+      color:#fff;
+      box-shadow:0 16px 34px rgba(37,99,235,.35);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-1px);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      color:#e8efff;
+    }
+
+    .btn-secondary:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .hero-note{
       color:var(--muted);
       font-size:14px;
       line-height:1.6;
+      max-width:680px;
     }
 
-    .trust-bar{
+    .stats{
       display:grid;
-      grid-template-columns:repeat(4,1fr);
+      grid-template-columns:repeat(3,1fr);
       gap:14px;
       margin-top:28px;
-      max-width:860px;
+      max-width:760px;
     }
 
-    .trust-chip{
-      background:rgba(255,255,255,.04);
+    .stat{
+      padding:18px;
+      border-radius:18px;
       border:1px solid rgba(255,255,255,.08);
-      border-radius:16px;
-      padding:16px;
-      color:#dfe9fb;
-      font-size:14px;
-      line-height:1.5;
+      background:rgba(255,255,255,.04);
       text-align:center;
+      box-shadow:var(--shadow);
     }
 
-    .card{
-      position:relative;
+    .stat strong{
+      display:block;
+      font-size:28px;
+      margin-bottom:6px;
+    }
+
+    .stat span{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.45;
+    }
+
+    .form{
       background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
       border:1px solid var(--line);
-      border-radius:28px;
+      border-radius:26px;
+      padding:26px;
+      backdrop-filter:blur(14px);
       box-shadow:var(--shadow);
-      backdrop-filter:blur(16px);
-    }
-
-    .form-card{
-      padding:24px;
       position:sticky;
-      top:100px;
-      overflow:hidden;
+      top:24px;
     }
 
-    .form-card::before{
-      content:"";
-      position:absolute;
-      width:220px;
-      height:220px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(90,148,255,.20), transparent 66%);
-      top:-70px;
-      right:-60px;
-      pointer-events:none;
-    }
-
-    .form-card__title{
+    .form h2{
       margin:0 0 10px;
-      font-size:30px;
+      font-size:28px;
       letter-spacing:-.03em;
-      position:relative;
-      z-index:1;
     }
 
-    .form-card__text{
-      margin:0 0 18px;
+    .form p{
       color:var(--muted);
-      line-height:1.65;
       font-size:15px;
-      position:relative;
-      z-index:1;
+      line-height:1.6;
+      margin:0 0 22px;
     }
 
-    .mini-proof{
+    .mini-list{
       display:grid;
       gap:10px;
-      margin-bottom:18px;
-      position:relative;
-      z-index:1;
+      margin-bottom:20px;
     }
 
-    .mini-proof__item{
+    .mini-item{
       display:flex;
       gap:10px;
       align-items:flex-start;
-      color:#e8f0ff;
       font-size:14px;
       line-height:1.5;
+      color:#e6efff;
     }
 
-    .mini-proof__check{
+    .mini-check{
       width:22px;
       height:22px;
       border-radius:999px;
+      flex:0 0 22px;
       display:flex;
       align-items:center;
       justify-content:center;
-      background:rgba(23,199,122,.15);
-      color:#8df2c1;
-      border:1px solid rgba(23,199,122,.22);
-      flex:0 0 22px;
-      margin-top:1px;
+      background:rgba(24,195,126,.14);
+      border:1px solid rgba(24,195,126,.22);
+      color:#aef2cf;
       font-size:12px;
+      margin-top:1px;
     }
 
-    form{
-      display:grid;
-      gap:14px;
-      position:relative;
-      z-index:1;
+    .field{
+      margin-bottom:14px;
     }
 
-    .grid-2{
+    .field-row{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:14px;
     }
 
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-
     .label{
+      display:block;
+      margin-bottom:8px;
       font-size:14px;
-      color:#e6eeff;
       font-weight:700;
+      color:#e6eeff;
     }
 
-    .input,.select,.textarea{
+    input,textarea,select{
       width:100%;
-      padding:15px 16px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(5,14,28,.68);
+      padding:14px 15px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
       color:#fff;
+      font-size:15px;
       outline:none;
       transition:.2s ease;
     }
 
-    .input::placeholder,.textarea::placeholder{
-      color:#88a0c3;
+    input::placeholder,
+    textarea::placeholder{
+      color:#92a8c9;
     }
 
-    .input:focus,.select:focus,.textarea:focus{
-      border-color:rgba(90,148,255,.75);
-      box-shadow:0 0 0 4px rgba(90,148,255,.12);
-      background:rgba(8,20,38,.9);
+    input:focus,
+    textarea:focus,
+    select:focus{
+      border-color:rgba(79,140,255,.7);
+      box-shadow:0 0 0 4px rgba(79,140,255,.10);
+      background:rgba(255,255,255,.07);
     }
 
-    .textarea{
-      min-height:108px;
+    textarea{
+      min-height:105px;
       resize:vertical;
     }
 
@@ -864,332 +407,186 @@ if(response.ok){
       text-align:center;
       border-radius:16px;
       padding:0 14px;
-      background:rgba(6,16,31,.72);
+      background:rgba(255,255,255,.05);
       border:1px solid rgba(255,255,255,.12);
-      color:#e8f0ff;
+      color:#eef4ff;
       font-weight:800;
       cursor:pointer;
-      transition:.2s ease;
+      transition:.2s;
     }
 
     .choice input:checked + label{
-      border-color:rgba(90,148,255,.8);
-      background:rgba(90,148,255,.15);
-      box-shadow:0 0 0 4px rgba(90,148,255,.12);
+      border-color:rgba(79,140,255,.75);
+      background:rgba(79,140,255,.14);
+      box-shadow:0 0 0 4px rgba(79,140,255,.10);
     }
 
-    .hidden{display:none}
-
-    .helper{
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.5;
-      margin-top:2px;
-    }
-
-    .notice{
+    .hidden{
       display:none;
-      border-radius:16px;
+    }
+
+    .error{
+      display:none;
+      margin-bottom:16px;
       padding:14px 16px;
+      border-radius:14px;
+      background:rgba(255,107,107,.12);
+      border:1px solid rgba(255,107,107,.28);
+      color:#ffd7d7;
       font-size:14px;
-      line-height:1.55;
+      line-height:1.5;
     }
 
-    .notice--error{
-      background:rgba(255,111,111,.12);
-      border:1px solid rgba(255,111,111,.26);
-      color:#ffd8d8;
+    .success{
+      display:none;
+      background:rgba(24,195,126,.12);
+      border:1px solid rgba(24,195,126,.24);
+      padding:18px;
+      border-radius:16px;
+      margin-top:18px;
     }
 
-    .submit-btn{
-      margin-top:6px;
+    .success h3{
+      margin:0 0 8px;
+      font-size:22px;
     }
 
-    .submit-btn[disabled]{
-      opacity:.72;
-      cursor:not-allowed;
-      transform:none;
+    .success p{
+      margin:0 0 14px;
+      color:#dcfaec;
+      font-size:15px;
+      line-height:1.6;
+    }
+
+    .success-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
     .privacy{
+      margin-top:14px;
       color:var(--muted);
       font-size:13px;
       line-height:1.55;
       text-align:center;
     }
 
-    .success-box{
-      display:none;
-      margin-top:6px;
-      padding:18px;
-      border-radius:20px;
-      background:rgba(23,199,122,.11);
-      border:1px solid rgba(23,199,122,.24);
-      position:relative;
-      z-index:1;
-    }
-
-    .success-box h3{
-      margin:0 0 10px;
-      font-size:24px;
-    }
-
-    .success-box p{
-      margin:0 0 14px;
-      color:#dff9eb;
-      line-height:1.65;
-    }
-
-    .success-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-    }
-
     .section{
-      padding:84px 0 0;
+      margin-top:110px;
     }
 
     .section-head{
-      max-width:780px;
-      margin:0 auto 28px;
+      max-width:760px;
+      margin:0 auto 26px;
       text-align:center;
     }
 
     .section-head h2{
+      font-size:clamp(30px,4vw,48px);
       margin:0 0 12px;
-      font-size:clamp(34px,4vw,52px);
-      line-height:1.06;
       letter-spacing:-.04em;
+      line-height:1.08;
     }
 
     .section-head p{
-      margin:0;
       color:var(--muted);
       font-size:18px;
       line-height:1.7;
+      margin:0;
     }
 
-    .cards-3{
+    .cards{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      gap:18px;
+      gap:20px;
     }
 
-    .cards-4{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:18px;
-    }
-
-    .info-card{
-      padding:24px;
+    .card{
       background:rgba(255,255,255,.05);
       border:1px solid rgba(255,255,255,.08);
-      border-radius:24px;
+      padding:24px;
+      border-radius:20px;
       box-shadow:var(--shadow);
     }
 
-    .info-card__icon{
-      width:48px;
-      height:48px;
+    .card-icon{
+      width:46px;
+      height:46px;
       display:flex;
       align-items:center;
       justify-content:center;
-      border-radius:16px;
-      margin-bottom:16px;
-      background:rgba(90,148,255,.15);
-      border:1px solid rgba(90,148,255,.24);
+      border-radius:14px;
+      background:rgba(79,140,255,.14);
+      border:1px solid rgba(79,140,255,.22);
+      margin-bottom:14px;
       font-size:20px;
     }
 
-    .info-card h3{
+    .card h3{
       margin:0 0 10px;
       font-size:22px;
-      letter-spacing:-.02em;
     }
 
-    .info-card p,.info-card li{
+    .card p,
+    .card li{
       color:var(--muted);
       line-height:1.7;
       font-size:15px;
     }
 
-    .info-card ul{
+    .card ul{
       margin:0;
       padding-left:18px;
     }
 
-    .steps{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-    }
-
-    .step{
-      padding:26px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-    }
-
-    .step__num{
-      width:44px;
-      height:44px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:14px;
-      background:linear-gradient(180deg, var(--blue), var(--blue-2));
-      box-shadow:0 12px 24px rgba(37,99,235,.25);
-      font-weight:800;
-      margin-bottom:16px;
-    }
-
-    .step h3{
-      margin:0 0 10px;
-      font-size:22px;
-    }
-
-    .step p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.7;
-    }
-
-    .comparison{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
-    }
-
-    .panel{
-      padding:26px;
-      border-radius:24px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:var(--shadow);
-    }
-
-    .panel h3{
-      margin:0 0 14px;
-      font-size:24px;
-      letter-spacing:-.02em;
-    }
-
-    .panel ul{
-      margin:0;
-      padding-left:18px;
-    }
-
-    .panel li{
-      color:var(--muted);
-      line-height:1.75;
-      margin-bottom:6px;
-    }
-
-    .panel--bad{
-      background:rgba(255,255,255,.035);
-    }
-
-    .faq{
-      display:grid;
-      gap:16px;
-      max-width:900px;
-      margin:0 auto;
-    }
-
-    .faq__item{
-      padding:22px;
-      border-radius:22px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:var(--shadow);
-    }
-
-    .faq__item h3{
-      margin:0 0 10px;
-      font-size:20px;
-    }
-
-    .faq__item p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.7;
-    }
-
-    .final-cta{
-      padding:32px;
+    .footer{
+      margin-top:110px;
       text-align:center;
-      border-radius:30px;
-      background:
-        radial-gradient(circle at top left, rgba(90,148,255,.18), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:var(--shadow);
-    }
-
-    .final-cta h2{
-      margin:0 0 12px;
-      font-size:clamp(34px,4vw,48px);
-      line-height:1.08;
-      letter-spacing:-.04em;
-    }
-
-    .final-cta p{
-      max-width:760px;
-      margin:0 auto 18px;
       color:var(--muted);
-      line-height:1.7;
-      font-size:18px;
-    }
-
-    .site-footer{
-      padding:34px 0 42px;
-      color:var(--muted);
-      text-align:center;
       font-size:14px;
-      line-height:1.65;
+      line-height:1.7;
     }
 
-    @media (max-width: 1080px){
-      .hero__grid,
-      .cards-4,
-      .cards-3,
-      .steps,
-      .comparison,
-      .trust-bar{
-        grid-template-columns:1fr 1fr;
+    @media(max-width:980px){
+      .hero{
+        grid-template-columns:1fr;
       }
 
-      .form-card{
+      .form{
         position:relative;
         top:auto;
       }
+
+      .stats,
+      .cards{
+        grid-template-columns:1fr 1fr;
+      }
     }
 
-    @media (max-width: 760px){
-      .site-header__inner{
-        min-height:72px;
+    @media(max-width:760px){
+      .wrapper{
+        padding:18px 16px 44px;
       }
 
-      .nav{
-        display:none;
+      .topbar{
+        margin-bottom:28px;
       }
 
-      .hero{
-        padding-top:36px;
+      .hero-actions,
+      .success-actions{
+        flex-direction:column;
       }
 
-      .hero__grid,
-      .cards-4,
-      .cards-3,
-      .steps,
-      .comparison,
-      .grid-2,
+      .btn,
+      .topbar-btn{
+        width:100%;
+      }
+
+      .field-row,
       .choice-row,
-      .trust-bar{
+      .stats,
+      .cards{
         grid-template-columns:1fr;
       }
 
@@ -1197,609 +594,451 @@ if(response.ok){
         font-size:42px;
       }
 
-      .hero__subtitle,
-      .section-head p,
-      .final-cta p{
-        font-size:17px;
+      .subtitle{
+        font-size:18px;
       }
 
-      .success-actions,
-      .hero__actions{
+      .topbar{
         flex-direction:column;
-      }
-
-      .btn{
-        width:100%;
-      }
-
-      .form-card{
-        padding:20px;
+        align-items:flex-start;
       }
     }
   </style>
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a href="#" class="brand" aria-label="AiForBiz home">
-        <span class="brand__mark">AI</span>
-        <span>AiForBiz</span>
-      </a>
+  <!-- Meta Pixel Code (noscript) -->
+  <noscript>
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      src="https://www.facebook.com/tr?id=25936076819410061&ev=PageView&noscript=1"
+      alt=""
+    />
+  </noscript>
+  <!-- End Meta Pixel Code (noscript) -->
 
-      <nav class="nav" aria-label="Primary">
-        <a href="#outcomes">What you get</a>
-        <a href="#how-it-works">How it works</a>
-        <a href="#fit">Who it's for</a>
-        <a href="#faq">FAQ</a>
-      </nav>
+  <div class="wrapper">
 
-      <a href="#lead-form" class="btn btn-secondary">Request Assessment</a>
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-mark">AI</div>
+        <div>AiForBiz</div>
+      </div>
+
+      <a href="#lead-form" class="topbar-btn">Request Your Audit</a>
     </div>
-  </header>
 
-  <main>
     <section class="hero">
-      <div class="container hero__grid">
-        <div>
-          <div class="eyebrow">
-            <span class="eyebrow__dot"></span>
-            Practical AI automation opportunity assessment
+
+      <div>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Practical AI opportunity assessment
+        </div>
+
+        <h1>
+          Get a personalized AI audit
+          for your business
+        </h1>
+
+        <div class="subtitle">
+          Discover which processes can be automated, where AI can create the fastest ROI,
+          and what to implement first.
+        </div>
+
+        <div class="features">
+
+          <div class="feature">
+            <div class="feature-icon">⚙️</div>
+            <div>Identify repetitive workflows across operations, sales, and support</div>
           </div>
 
-          <h1>Find the highest-ROI AI opportunities in your business</h1>
+          <div class="feature">
+            <div class="feature-icon">⏱️</div>
+            <div>Find automation opportunities that can save dozens of hours every month</div>
+          </div>
 
-          <p class="hero__subtitle">
-            We identify which workflows you should automate first, where AI can reduce operating costs,
-            and what to prioritize before you waste money on the wrong tools.
+          <div class="feature">
+            <div class="feature-icon">📈</div>
+            <div>Get practical AI implementation recommendations for your company</div>
+          </div>
+
+        </div>
+
+        <div class="hero-actions">
+          <a href="#lead-form" class="btn btn-primary">Get My AI Audit</a>
+          <a href="#what-you-get" class="btn btn-secondary">See What You'll Get</a>
+        </div>
+
+        <div class="hero-note">
+          Built for service businesses, agencies, operations teams, and growing companies
+          that want clear business value from AI.
+        </div>
+
+        <div class="stats">
+
+          <div class="stat">
+            <strong>3–5</strong>
+            <span>strong automation opportunities</span>
+          </div>
+
+          <div class="stat">
+            <strong>Fast</strong>
+            <span>ROI-focused AI use cases</span>
+          </div>
+
+          <div class="stat">
+            <strong>Clear</strong>
+            <span>implementation roadmap</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="form" id="lead-form">
+
+        <h2>Request your AI audit</h2>
+
+        <p>
+          Fill out the form and choose your preferred contact method.
+          Work email is required, plus Telegram or WhatsApp.
+        </p>
+
+        <div class="mini-list">
+          <div class="mini-item">
+            <div class="mini-check">✓</div>
+            <div>Clear automation opportunities tailored to your business</div>
+          </div>
+
+          <div class="mini-item">
+            <div class="mini-check">✓</div>
+            <div>Priority AI use cases ranked by practical ROI</div>
+          </div>
+
+          <div class="mini-item">
+            <div class="mini-check">✓</div>
+            <div>Actionable next steps instead of generic AI advice</div>
+          </div>
+        </div>
+
+        <div class="error" id="errorBox"></div>
+
+        <form id="leadForm" novalidate>
+
+          <div class="field-row">
+            <div class="field">
+              <label class="label" for="name">Full name *</label>
+              <input id="name" type="text" placeholder="John Smith" />
+            </div>
+
+            <div class="field">
+              <label class="label" for="company">Company name *</label>
+              <input id="company" type="text" placeholder="Acme Growth" />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label class="label" for="email">Work email *</label>
+              <input id="email" type="email" placeholder="john@company.com" />
+            </div>
+
+            <div class="field">
+              <label class="label" for="website">Website</label>
+              <input id="website" type="url" placeholder="https://yourcompany.com" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="business">What does your business do?</label>
+            <textarea id="business" placeholder="Briefly describe your business, services, or offer"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label" for="problem">Biggest bottleneck right now</label>
+            <textarea id="problem" placeholder="For example: too much manual work, slow lead follow-up, repetitive support tasks..."></textarea>
+          </div>
+
+          <div class="field">
+            <div class="label">Preferred contact method *</div>
+            <div class="choice-row">
+              <div class="choice">
+                <input type="radio" id="contactTelegram" name="contactMethod" value="Telegram" checked />
+                <label for="contactTelegram">Telegram</label>
+              </div>
+
+              <div class="choice">
+                <input type="radio" id="contactWhatsApp" name="contactMethod" value="WhatsApp" />
+                <label for="contactWhatsApp">WhatsApp</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="field" id="telegramField">
+            <label class="label" for="telegramInput">Telegram username *</label>
+            <input id="telegramInput" type="text" placeholder="@yourusername" />
+          </div>
+
+          <div class="field hidden" id="whatsappField">
+            <label class="label" for="whatsappInput">WhatsApp number *</label>
+            <input id="whatsappInput" type="text" placeholder="+1 555 123 4567" />
+          </div>
+
+          <button class="btn btn-primary" type="submit" id="submitBtn">Get My AI Audit</button>
+
+          <div class="privacy">
+            We use your information only to review your request and contact you about your AI audit. No spam.
+          </div>
+        </form>
+
+        <div class="success" id="successBox">
+          <h3>Request received ✅</h3>
+          <p>
+            Your submission has been sent successfully. We will contact you shortly using your preferred messenger.
           </p>
 
-          <ul class="hero__points">
-            <li>
-              <span class="icon-badge">⚙️</span>
-              <span>Identify repetitive work across operations, sales, support, admin, and internal workflows.</span>
-            </li>
-            <li>
-              <span class="icon-badge">📈</span>
-              <span>Prioritize AI use cases by practical ROI, not hype, so you know what is actually worth implementing.</span>
-            </li>
-            <li>
-              <span class="icon-badge">🧭</span>
-              <span>Get a clear starting point for implementation based on your business model, bottlenecks, and team reality.</span>
-            </li>
+          <div class="success-actions">
+            <a href="#what-you-get" class="btn btn-secondary">See What You'll Get</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section" id="what-you-get">
+      <div class="section-head">
+        <h2>What you'll get</h2>
+        <p>
+          A practical AI audit focused on real business opportunities, not generic AI theory.
+        </p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-icon">🔍</div>
+          <h3>Automation Opportunities</h3>
+          <p>We identify the workflows in your company that can be automated with AI.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">💸</div>
+          <h3>Priority by ROI</h3>
+          <p>See which AI use cases can deliver the biggest return on investment first.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🧭</div>
+          <h3>Implementation Roadmap</h3>
+          <p>Clear steps showing where to start implementing AI in your business.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Who this is for</h2>
+        <p>
+          Best for companies that want to reduce manual work, improve efficiency,
+          and find high-value AI opportunities without wasting time on random tools.
+        </p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-icon">🏢</div>
+          <h3>Service Businesses</h3>
+          <ul>
+            <li>Agencies</li>
+            <li>Consulting firms</li>
+            <li>B2B service providers</li>
           </ul>
-
-          <div class="hero__actions">
-            <a href="#lead-form" class="btn btn-primary">Get My AI Assessment</a>
-            <a href="#outcomes" class="btn btn-secondary">See what you'll get</a>
-          </div>
-
-          <div class="hero__micro">
-            Built for service businesses, agencies, operations teams, and growing SMBs that want clarity before investing in AI implementation.
-          </div>
-
-          <div class="trust-bar" aria-label="Audience fit">
-            <div class="trust-chip">Service Businesses</div>
-            <div class="trust-chip">Agencies</div>
-            <div class="trust-chip">Operations Teams</div>
-            <div class="trust-chip">Growing SMBs</div>
-          </div>
         </div>
 
-        <aside class="card form-card" id="lead-form">
-          <h2 class="form-card__title">Request your assessment</h2>
-          <p class="form-card__text">
-            Fill out the form in under 60 seconds. Work email is required, plus your preferred messenger:
-            Telegram or WhatsApp.
-          </p>
+        <div class="card">
+          <div class="card-icon">🛠️</div>
+          <h3>Operations-Heavy Teams</h3>
+          <ul>
+            <li>Sales operations</li>
+            <li>Support teams</li>
+            <li>Back-office processes</li>
+          </ul>
+        </div>
 
-          <div class="mini-proof">
-            <div class="mini-proof__item">
-              <span class="mini-proof__check">✓</span>
-              <span>Clear automation opportunities tailored to your business</span>
-            </div>
-            <div class="mini-proof__item">
-              <span class="mini-proof__check">✓</span>
-              <span>Priority AI use cases ranked by business value</span>
-            </div>
-            <div class="mini-proof__item">
-              <span class="mini-proof__check">✓</span>
-              <span>Practical next steps instead of generic AI advice</span>
-            </div>
-          </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Founders & Managers</h3>
+          <ul>
+            <li>Teams scaling too slowly</li>
+            <li>Leaders overloaded with manual work</li>
+            <li>Companies unsure where AI should start</li>
+          </ul>
+        </div>
 
-          <div class="notice notice--error" id="formError"></div>
-
-          <form id="assessmentForm" novalidate>
-            <div class="grid-2">
-              <div class="field">
-                <label class="label" for="fullName">Full name *</label>
-                <input class="input" id="fullName" name="fullName" type="text" placeholder="John Smith" required>
-              </div>
-
-              <div class="field">
-                <label class="label" for="companyName">Company name *</label>
-                <input class="input" id="companyName" name="companyName" type="text" placeholder="Acme Growth" required>
-              </div>
-            </div>
-
-            <div class="grid-2">
-              <div class="field">
-                <label class="label" for="email">Work email *</label>
-                <input class="input" id="email" name="email" type="email" placeholder="john@company.com" required>
-              </div>
-
-              <div class="field">
-                <label class="label" for="website">Website</label>
-                <input class="input" id="website" name="website" type="url" placeholder="https://yourcompany.com">
-              </div>
-            </div>
-
-            <div class="grid-2">
-              <div class="field">
-                <label class="label" for="companyType">Business type *</label>
-                <select class="select" id="companyType" name="companyType" required>
-                  <option value="">Select one</option>
-                  <option>Agency</option>
-                  <option>Service business</option>
-                  <option>SaaS / Tech-enabled business</option>
-                  <option>Ecommerce</option>
-                  <option>Professional services</option>
-                  <option>Local multi-location business</option>
-                  <option>Other</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label class="label" for="teamSize">Team size</label>
-                <select class="select" id="teamSize" name="teamSize">
-                  <option value="">Select one</option>
-                  <option>1–5</option>
-                  <option>6–20</option>
-                  <option>21–50</option>
-                  <option>51–200</option>
-                  <option>200+</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="field">
-              <label class="label" for="priority">What do you most want to improve first? *</label>
-              <select class="select" id="priority" name="priority" required>
-                <option value="">Select one</option>
-                <option>Reduce manual work</option>
-                <option>Improve sales follow-up</option>
-                <option>Speed up support or client response</option>
-                <option>Improve internal operations</option>
-                <option>Automate admin / back-office tasks</option>
-                <option>Find the highest-ROI starting point</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label class="label" for="bottleneck">Biggest bottleneck right now</label>
-              <textarea class="textarea" id="bottleneck" name="bottleneck" placeholder="Example: lead follow-up is slow, reporting is manual, support is repetitive, ops is overloaded..."></textarea>
-            </div>
-
-            <div class="field">
-              <div class="label">Preferred contact method *</div>
-              <div class="choice-row">
-                <div class="choice">
-                  <input type="radio" id="contactTelegram" name="contactMethod" value="telegram" checked>
-                  <label for="contactTelegram">Telegram</label>
-                </div>
-                <div class="choice">
-                  <input type="radio" id="contactWhatsApp" name="contactMethod" value="whatsapp">
-                  <label for="contactWhatsApp">WhatsApp</label>
-                </div>
-              </div>
-            </div>
-
-            <div class="field" id="telegramField">
-              <label class="label" for="telegramHandle">Telegram username *</label>
-              <input class="input" id="telegramHandle" name="telegramHandle" type="text" placeholder="@yourusername">
-              <div class="helper">Use your Telegram username so we can contact you there.</div>
-            </div>
-
-            <div class="field hidden" id="whatsappField">
-              <label class="label" for="whatsappNumber">WhatsApp number *</label>
-              <input class="input" id="whatsappNumber" name="whatsappNumber" type="text" placeholder="+1 555 123 4567">
-              <div class="helper">Include your country code.</div>
-            </div>
-
-            <input type="hidden" id="utm_source" name="utm_source">
-            <input type="hidden" id="utm_medium" name="utm_medium">
-            <input type="hidden" id="utm_campaign" name="utm_campaign">
-            <input type="hidden" id="utm_content" name="utm_content">
-            <input type="hidden" id="utm_term" name="utm_term">
-            <input type="hidden" id="page_url" name="page_url">
-            <input type="hidden" id="page_referrer" name="page_referrer">
-            <input type="hidden" id="submitted_at" name="submitted_at">
-
-            <button class="btn btn-primary submit-btn" id="submitBtn" type="submit">Get My AI Assessment</button>
-
-            <div class="privacy">
-              We use your information only to review your request and contact you about your assessment. No spam.
-            </div>
-          </form>
-
-          <div class="success-box" id="successBox">
-            <h3>Your request has been received</h3>
-            <p>
-              Thanks — your assessment request is in. To speed things up, you can open your preferred messenger now and send the prewritten message.
-            </p>
-            <div class="success-actions">
-              <a href="#" class="btn btn-primary" id="openMessengerBtn" target="_blank" rel="noopener noreferrer">Open messenger</a>
-              <a href="#outcomes" class="btn btn-secondary">What happens next</a>
-            </div>
-          </div>
-        </aside>
       </div>
     </section>
 
-    <section class="section" id="outcomes">
-      <div class="container">
-        <div class="section-head">
-          <h2>What you'll get</h2>
-          <p>
-            This is not a generic AI report. It is a practical business-focused assessment designed to identify
-            where automation can create the clearest value first.
-          </p>
-        </div>
-
-        <div class="cards-4">
-          <article class="info-card">
-            <div class="info-card__icon">🔎</div>
-            <h3>3–5 strong automation opportunities</h3>
-            <p>We identify the workflows most likely to benefit from AI or automation based on your operating reality.</p>
-          </article>
-
-          <article class="info-card">
-            <div class="info-card__icon">💸</div>
-            <h3>Priority by ROI</h3>
-            <p>You see which opportunities are worth prioritizing first instead of testing random tools.</p>
-          </article>
-
-          <article class="info-card">
-            <div class="info-card__icon">🧩</div>
-            <h3>Practical use-case mapping</h3>
-            <p>We connect pain points to useful AI applications across sales, support, operations, and admin.</p>
-          </article>
-
-          <article class="info-card">
-            <div class="info-card__icon">🚀</div>
-            <h3>Clear next steps</h3>
-            <p>You get a realistic starting point for implementation, not abstract theory or AI buzzwords.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="how-it-works">
-      <div class="container">
-        <div class="section-head">
-          <h2>How it works</h2>
-          <p>
-            A simple process designed for busy founders, operators, and service businesses that need clarity fast.
-          </p>
-        </div>
-
-        <div class="steps">
-          <article class="step">
-            <div class="step__num">1</div>
-            <h3>Submit your request</h3>
-            <p>Tell us about your business, your main priority, and how you want us to contact you.</p>
-          </article>
-
-          <article class="step">
-            <div class="step__num">2</div>
-            <h3>We review your workflows</h3>
-            <p>We look at where repetitive work, delays, manual effort, or operational drag are most likely happening.</p>
-          </article>
-
-          <article class="step">
-            <div class="step__num">3</div>
-            <h3>You get practical guidance</h3>
-            <p>We contact you with the highest-value opportunities, suggested starting points, and likely quick wins.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="fit">
-      <div class="container">
-        <div class="section-head">
-          <h2>Who this is best for</h2>
-          <p>
-            This assessment is especially useful for businesses that know AI matters, but want to start with the right workflows instead of the wrong tools.
-          </p>
-        </div>
-
-        <div class="cards-3">
-          <article class="info-card">
-            <div class="info-card__icon">🏢</div>
-            <h3>Service businesses and agencies</h3>
-            <ul>
-              <li>Client delivery teams</li>
-              <li>Reporting-heavy operations</li>
-              <li>Manual onboarding or account management</li>
-            </ul>
-          </article>
-
-          <article class="info-card">
-            <div class="info-card__icon">🛠</div>
-            <h3>Operations-heavy companies</h3>
-            <ul>
-              <li>Repetitive internal workflows</li>
-              <li>Slow handoffs between people and teams</li>
-              <li>Admin tasks draining execution speed</li>
-            </ul>
-          </article>
-
-          <article class="info-card">
-            <div class="info-card__icon">📊</div>
-            <h3>Founders and managers seeking ROI</h3>
-            <ul>
-              <li>Unsure where AI should start</li>
-              <li>Tired of manual bottlenecks</li>
-              <li>Wanting real business value, not AI theater</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Why most AI projects stall</h2>
-          <p>
-            The problem is rarely a lack of tools. The real problem is choosing the wrong workflows, the wrong sequence, and the wrong place to start.
-          </p>
-        </div>
-
-        <div class="comparison">
-          <div class="panel panel--bad">
-            <h3>What usually goes wrong</h3>
-            <ul>
-              <li>Businesses test random AI tools with no implementation logic</li>
-              <li>Teams get overwhelmed by scattered experiments</li>
-              <li>No one knows which workflow actually matters most</li>
-              <li>ROI stays vague, so momentum disappears</li>
-            </ul>
-          </div>
-
-          <div class="panel">
-            <h3>What this assessment helps you do</h3>
-            <ul>
-              <li>Identify the workflows most likely to create business value</li>
-              <li>Prioritize opportunities by speed, practicality, and impact</li>
-              <li>Reduce wasted time on low-value experiments</li>
-              <li>Start implementation from a clearer, more strategic position</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="container">
-        <div class="section-head">
-          <h2>Frequently asked questions</h2>
-          <p>
-            Clear answers for businesses considering AI automation but wanting a more practical, lower-friction starting point.
-          </p>
-        </div>
-
-        <div class="faq">
-          <article class="faq__item">
-            <h3>Is this for large companies only?</h3>
-            <p>No. It is especially useful for small and mid-sized businesses that want to move faster without building a large internal AI team first.</p>
-          </article>
-
-          <article class="faq__item">
-            <h3>Do I need to know which AI tools I want?</h3>
-            <p>No. The point is to identify where AI can help before making tool decisions, so you do not waste time on the wrong stack.</p>
-          </article>
-
-          <article class="faq__item">
-            <h3>What kinds of workflows can be assessed?</h3>
-            <p>Typical areas include lead handling, client communication, support, reporting, internal ops, admin tasks, and repetitive process execution.</p>
-          </article>
-
-          <article class="faq__item">
-            <h3>What happens after I submit the form?</h3>
-            <p>Your request is sent for review, and we contact you through your preferred messenger using the details you provide.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="final-cta">
-          <h2>Start with the right AI opportunities</h2>
-          <p>
-            Request your assessment and find where AI can realistically save time, reduce operating costs, and improve execution in your business.
-          </p>
-          <a href="#lead-form" class="btn btn-primary">Request My Assessment</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      AiForBiz helps businesses identify practical automation opportunities and prioritize AI use cases with real operating value.
+    <div class="footer">
+      AiForBiz helps companies discover automation opportunities and implement AI solutions that deliver measurable business value.
     </div>
-  </footer>
+
+  </div>
 
   <script>
-    const WEBHOOK_URL = "YOUR_WEBHOOK_URL";
-    const TELEGRAM_MANAGER = "YOUR_TELEGRAM_USERNAME";
-    const WHATSAPP_MANAGER = "YOUR_WHATSAPP_NUMBER";
+    const BOT_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN";
+    const CHAT_ID = "YOUR_TELEGRAM_CHAT_ID";
 
-    const form = document.getElementById("assessmentForm");
-    const formError = document.getElementById("formError");
-    const submitBtn = document.getElementById("submitBtn");
+    const form = document.getElementById("leadForm");
+    const errorBox = document.getElementById("errorBox");
     const successBox = document.getElementById("successBox");
-    const openMessengerBtn = document.getElementById("openMessengerBtn");
+    const submitBtn = document.getElementById("submitBtn");
 
     const telegramField = document.getElementById("telegramField");
     const whatsappField = document.getElementById("whatsappField");
-    const telegramHandle = document.getElementById("telegramHandle");
-    const whatsappNumber = document.getElementById("whatsappNumber");
+    const telegramInput = document.getElementById("telegramInput");
+    const whatsappInput = document.getElementById("whatsappInput");
 
     const contactTelegram = document.getElementById("contactTelegram");
     const contactWhatsApp = document.getElementById("contactWhatsApp");
 
-    function setFieldVisibility() {
-      const contactMethod = document.querySelector('input[name="contactMethod"]:checked')?.value;
-
-      if (contactMethod === "whatsapp") {
+    function setMessengerField() {
+      if (contactWhatsApp.checked) {
         whatsappField.classList.remove("hidden");
         telegramField.classList.add("hidden");
-        whatsappNumber.required = true;
-        telegramHandle.required = false;
       } else {
         telegramField.classList.remove("hidden");
         whatsappField.classList.add("hidden");
-        telegramHandle.required = true;
-        whatsappNumber.required = false;
       }
-    }
-
-    function getQueryParam(name) {
-      const params = new URLSearchParams(window.location.search);
-      return params.get(name) || "";
-    }
-
-    function populateTrackingFields() {
-      document.getElementById("utm_source").value = getQueryParam("utm_source");
-      document.getElementById("utm_medium").value = getQueryParam("utm_medium");
-      document.getElementById("utm_campaign").value = getQueryParam("utm_campaign");
-      document.getElementById("utm_content").value = getQueryParam("utm_content");
-      document.getElementById("utm_term").value = getQueryParam("utm_term");
-      document.getElementById("page_url").value = window.location.href;
-      document.getElementById("page_referrer").value = document.referrer || "";
-      document.getElementById("submitted_at").value = new Date().toISOString();
     }
 
     function showError(message) {
-      formError.textContent = message;
-      formError.style.display = "block";
+      errorBox.textContent = message;
+      errorBox.style.display = "block";
     }
 
     function hideError() {
-      formError.textContent = "";
-      formError.style.display = "none";
+      errorBox.textContent = "";
+      errorBox.style.display = "none";
     }
 
-    function validateForm(data) {
-      if (!data.fullName.trim()) return "Please enter your full name.";
-      if (!data.companyName.trim()) return "Please enter your company name.";
-      if (!data.email.trim()) return "Please enter your work email.";
-      if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(data.email.trim())) return "Please enter a valid email address.";
-      if (!data.companyType.trim()) return "Please select your business type.";
-      if (!data.priority.trim()) return "Please select what you want to improve first.";
-
-      if (data.contactMethod === "telegram" && !data.telegramHandle.trim()) {
-        return "Please enter your Telegram username.";
-      }
-
-      if (data.contactMethod === "whatsapp" && !data.whatsappNumber.trim()) {
-        return "Please enter your WhatsApp number.";
-      }
-
-      return "";
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
-    function createFollowUpMessage() {
-      return encodeURIComponent(
-`Hello!
+    contactTelegram.addEventListener("change", setMessengerField);
+    contactWhatsApp.addEventListener("change", setMessengerField);
+    setMessengerField();
 
-I just submitted my AI assessment request on your website.
-
-I'm interested in:
-• identifying which workflows can be automated
-• finding the highest-ROI AI opportunities
-• understanding where implementation should start first
-
-Thank you!`
-      );
-    }
-
-    async function submitLead(payload) {
-      if (!WEBHOOK_URL || WEBHOOK_URL === "YOUR_WEBHOOK_URL") {
-        throw new Error("Webhook URL is not configured yet.");
-      }
-
-      const response = await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
-      });
-
-      let result = {};
-      try {
-        result = await response.json();
-      } catch (e) {
-        result = {};
-      }
-
-      if (!response.ok || result.success === false) {
-        throw new Error(result.message || "The form could not be submitted right now.");
-      }
-
-      return result;
-    }
-
-    contactTelegram.addEventListener("change", setFieldVisibility);
-    contactWhatsApp.addEventListener("change", setFieldVisibility);
-
-    populateTrackingFields();
-    setFieldVisibility();
-
-    form.addEventListener("submit", async function (e) {
+    form.addEventListener("submit", async function(e) {
       e.preventDefault();
       hideError();
-      populateTrackingFields();
 
-      const formData = new FormData(form);
-      const payload = Object.fromEntries(formData.entries());
+      const name = document.getElementById("name").value.trim();
+      const company = document.getElementById("company").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const website = document.getElementById("website").value.trim();
+      const business = document.getElementById("business").value.trim();
+      const problem = document.getElementById("problem").value.trim();
+      const contact = document.querySelector('input[name="contactMethod"]:checked').value;
+      const messenger = contact === "Telegram"
+        ? telegramInput.value.trim()
+        : whatsappInput.value.trim();
 
-      const validationError = validateForm(payload);
-      if (validationError) {
-        showError(validationError);
+      if (!name) {
+        showError("Please enter your full name.");
         return;
       }
 
+      if (!company) {
+        showError("Please enter your company name.");
+        return;
+      }
+
+      if (!email) {
+        showError("Please enter your work email.");
+        return;
+      }
+
+      if (!isValidEmail(email)) {
+        showError("Please enter a valid email address.");
+        return;
+      }
+
+      if (!messenger) {
+        showError(contact === "Telegram"
+          ? "Please enter your Telegram username."
+          : "Please enter your WhatsApp number.");
+        return;
+      }
+
+      if (BOT_TOKEN === "YOUR_TELEGRAM_BOT_TOKEN" || CHAT_ID === "YOUR_TELEGRAM_CHAT_ID") {
+        showError("Please add your Telegram bot token and chat ID in the code before using the form.");
+        return;
+      }
+
+      const text =
+`🔥 New AI Audit Lead
+
+Name: ${name}
+Company: ${company}
+Email: ${email}
+Website: ${website || "—"}
+
+Preferred contact: ${contact}
+Messenger: ${messenger}
+
+Business:
+${business || "—"}
+
+Bottleneck:
+${problem || "—"}
+
+Page:
+${window.location.href}
+
+Referrer:
+${document.referrer || "Direct"}`;
+
       submitBtn.disabled = true;
-      submitBtn.textContent = "Submitting request...";
+      submitBtn.textContent = "Sending...";
 
       try {
-        await submitLead(payload);
+        const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: text
+          })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.ok) {
+          throw new Error("Telegram API error");
+        }
 
         form.style.display = "none";
         successBox.style.display = "block";
 
-        const followUpMessage = createFollowUpMessage();
-        const messengerLink =
-          payload.contactMethod === "whatsapp"
-            ? `https://wa.me/${WHATSAPP_MANAGER}?text=${followUpMessage}`
-            : `https://t.me/${TELEGRAM_MANAGER}?text=${followUpMessage}`;
-
-        openMessengerBtn.href = messengerLink;
-        openMessengerBtn.textContent =
-          payload.contactMethod === "whatsapp" ? "Open WhatsApp" : "Open Telegram";
+        if (typeof fbq === "function") {
+          fbq("track", "Lead");
+          fbq("trackCustom", "AuditRequestSubmitted", {
+            source: "landing_form"
+          });
+        }
 
       } catch (error) {
-        showError(error.message || "Something went wrong while submitting the form.");
+        showError("Something went wrong while submitting the form. Please try again.");
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = "Get My AI Assessment";
+        submitBtn.textContent = "Get My AI Audit";
       }
     });
   </script>
