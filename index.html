@@ -1,438 +1,1343 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiForBiz — Find the Highest-ROI AI Opportunities in Your Business</title>
+  <meta
+    name="description"
+    content="Get a practical AI automation assessment for your business. Discover what to automate first, where AI can reduce operating costs, and which use cases can deliver the fastest ROI."
+  />
+  <meta property="og:title" content="AiForBiz — AI Automation Opportunity Assessment" />
+  <meta
+    property="og:description"
+    content="Identify the highest-ROI AI opportunities in your business and get practical next steps."
+  />
+  <meta name="theme-color" content="#07111f" />
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root{
+      --bg:#06111f;
+      --bg2:#0a1830;
+      --card:rgba(255,255,255,.06);
+      --card-2:rgba(255,255,255,.08);
+      --line:rgba(255,255,255,.12);
+      --line-2:rgba(255,255,255,.08);
+      --text:#f4f7ff;
+      --muted:#9fb0cb;
+      --muted-2:#bfd0ea;
+      --blue:#5a94ff;
+      --blue-2:#2563eb;
+      --green:#17c77a;
+      --danger:#ff6f6f;
+      --warning:#ffbf47;
+      --shadow:0 24px 80px rgba(0,0,0,.42);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1200px;
+    }
 
-<title>AiForBiz — AI Business Audit</title>
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(90,148,255,.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(23,199,122,.10), transparent 26%),
+        linear-gradient(180deg,#04101d 0%, #081425 45%, #06111f 100%);
+      min-height:100vh;
+    }
 
-<meta name="description" content="Get a personalized AI audit for your business and discover where automation can save time and money.">
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
 
-<style>
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
 
-:root{
---bg:#020814;
---card:#0b1526;
---glass:rgba(255,255,255,.06);
---line:rgba(255,255,255,.12);
---text:#f4f7ff;
---muted:#9fb0c9;
---blue:#3b82f6;
---blue2:#1d4ed8;
-}
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:40;
+      backdrop-filter:blur(14px);
+      background:rgba(5,14,28,.62);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
 
-*{box-sizing:border-box}
+    .site-header__inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      min-height:78px;
+    }
 
-body{
-margin:0;
-font-family:Inter,system-ui,Arial,sans-serif;
-color:var(--text);
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      letter-spacing:-.02em;
+      white-space:nowrap;
+    }
 
-background:
-radial-gradient(circle at top, rgba(59,130,246,.25), transparent 35%),
-linear-gradient(180deg,#020814,#040d1d 60%,#020814);
+    .brand__mark{
+      width:40px;
+      height:40px;
+      border-radius:14px;
+      background:
+        linear-gradient(180deg, rgba(90,148,255,.9), rgba(37,99,235,.92));
+      box-shadow:0 12px 24px rgba(37,99,235,.25);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+    }
 
-min-height:100vh;
-}
+    .nav{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      color:var(--muted);
+      font-size:14px;
+    }
 
-.wrapper{
-max-width:1200px;
-margin:auto;
-padding:40px 20px;
-}
+    .nav a:hover{color:#fff}
 
-.hero{
-display:grid;
-grid-template-columns:1.1fr .9fr;
-gap:60px;
-align-items:center;
-}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:54px;
+      padding:0 24px;
+      border:none;
+      border-radius:16px;
+      font-weight:800;
+      font-size:16px;
+      cursor:pointer;
+      transition:.2s ease;
+    }
 
-.brand{
-font-size:18px;
-font-weight:700;
-margin-bottom:20px;
-}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(180deg, var(--blue), var(--blue-2));
+      box-shadow:0 18px 34px rgba(37,99,235,.34);
+    }
 
-h1{
-font-size:58px;
-line-height:1.05;
-letter-spacing:-.03em;
-margin:0 0 20px;
-}
+    .btn-secondary{
+      color:#e8f0ff;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+    }
 
-.subtitle{
-font-size:20px;
-color:var(--muted);
-margin-bottom:30px;
-}
+    .hero{
+      padding:56px 0 34px;
+    }
 
-.features{
-display:grid;
-gap:16px;
-margin-bottom:40px;
-}
+    .hero__grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:30px;
+      align-items:start;
+    }
 
-.feature{
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-padding:16px 18px;
-border-radius:16px;
-}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      color:#dbe7ff;
+      font-size:13px;
+      margin-bottom:18px;
+    }
 
-.stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:16px;
-margin-top:30px;
-}
+    .eyebrow__dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 0 6px rgba(23,199,122,.10);
+    }
 
-.stat{
-padding:18px;
-border-radius:16px;
-border:1px solid rgba(255,255,255,.08);
-background:rgba(255,255,255,.04);
-text-align:center;
-}
+    h1{
+      margin:0 0 18px;
+      font-size:clamp(42px, 6vw, 72px);
+      line-height:1.01;
+      letter-spacing:-.05em;
+      max-width:760px;
+    }
 
-.stat strong{
-display:block;
-font-size:30px;
-margin-bottom:4px;
-}
+    .hero__subtitle{
+      font-size:20px;
+      line-height:1.65;
+      color:var(--muted);
+      max-width:760px;
+      margin-bottom:28px;
+    }
 
-.form{
-background:var(--glass);
-border:1px solid var(--line);
-border-radius:22px;
-padding:28px;
-backdrop-filter:blur(12px);
-box-shadow:0 20px 60px rgba(0,0,0,.6);
-}
+    .hero__points{
+      display:grid;
+      gap:14px;
+      margin:0 0 28px;
+      padding:0;
+      list-style:none;
+      max-width:760px;
+    }
 
-.form h2{
-margin-top:0;
-margin-bottom:10px;
-}
+    .hero__points li{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      padding:15px 16px;
+      color:#eef4ff;
+    }
 
-.form p{
-color:var(--muted);
-font-size:15px;
-margin-bottom:22px;
-}
+    .icon-badge{
+      width:30px;
+      height:30px;
+      flex:0 0 30px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:12px;
+      background:rgba(90,148,255,.15);
+      border:1px solid rgba(90,148,255,.24);
+      font-size:15px;
+    }
 
-.field{
-margin-bottom:14px;
-}
+    .hero__actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:18px;
+    }
 
-input,textarea,select{
+    .hero__micro{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+    }
 
-width:100%;
-padding:14px;
-border-radius:14px;
-border:1px solid rgba(255,255,255,.14);
-background:rgba(255,255,255,.05);
-color:white;
-font-size:15px;
-outline:none;
+    .trust-bar{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:28px;
+      max-width:860px;
+    }
 
-}
+    .trust-chip{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:16px;
+      color:#dfe9fb;
+      font-size:14px;
+      line-height:1.5;
+      text-align:center;
+    }
 
-textarea{
-min-height:90px;
-resize:vertical;
-}
+    .card{
+      position:relative;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border:1px solid var(--line);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(16px);
+    }
 
-button{
+    .form-card{
+      padding:24px;
+      position:sticky;
+      top:100px;
+      overflow:hidden;
+    }
 
-width:100%;
-padding:16px;
-border-radius:16px;
-border:none;
-background:linear-gradient(180deg,#4f8cff,#1d4ed8);
-color:white;
-font-size:17px;
-font-weight:700;
-cursor:pointer;
-margin-top:8px;
+    .form-card::before{
+      content:"";
+      position:absolute;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(90,148,255,.20), transparent 66%);
+      top:-70px;
+      right:-60px;
+      pointer-events:none;
+    }
 
-}
+    .form-card__title{
+      margin:0 0 10px;
+      font-size:30px;
+      letter-spacing:-.03em;
+      position:relative;
+      z-index:1;
+    }
 
-.success{
-display:none;
-background:#1a2f22;
-border:1px solid #2f6f4c;
-padding:18px;
-border-radius:14px;
-margin-top:20px;
-}
+    .form-card__text{
+      margin:0 0 18px;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:15px;
+      position:relative;
+      z-index:1;
+    }
 
-.section{
-margin-top:120px;
-}
+    .mini-proof{
+      display:grid;
+      gap:10px;
+      margin-bottom:18px;
+      position:relative;
+      z-index:1;
+    }
 
-.section h2{
-font-size:40px;
-margin-bottom:20px;
-}
+    .mini-proof__item{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color:#e8f0ff;
+      font-size:14px;
+      line-height:1.5;
+    }
 
-.cards{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-}
+    .mini-proof__check{
+      width:22px;
+      height:22px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(23,199,122,.15);
+      color:#8df2c1;
+      border:1px solid rgba(23,199,122,.22);
+      flex:0 0 22px;
+      margin-top:1px;
+      font-size:12px;
+    }
 
-.card{
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-padding:22px;
-border-radius:18px;
-}
+    form{
+      display:grid;
+      gap:14px;
+      position:relative;
+      z-index:1;
+    }
 
-.card h3{
-margin-top:0;
-}
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
 
-.footer{
-margin-top:120px;
-text-align:center;
-color:var(--muted);
-font-size:14px;
-}
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
 
-@media(max-width:900px){
+    .label{
+      font-size:14px;
+      color:#e6eeff;
+      font-weight:700;
+    }
 
-.hero{
-grid-template-columns:1fr;
-}
+    .input,.select,.textarea{
+      width:100%;
+      padding:15px 16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(5,14,28,.68);
+      color:#fff;
+      outline:none;
+      transition:.2s ease;
+    }
 
-.stats{
-grid-template-columns:1fr;
-}
+    .input::placeholder,.textarea::placeholder{
+      color:#88a0c3;
+    }
 
-.cards{
-grid-template-columns:1fr;
-}
+    .input:focus,.select:focus,.textarea:focus{
+      border-color:rgba(90,148,255,.75);
+      box-shadow:0 0 0 4px rgba(90,148,255,.12);
+      background:rgba(8,20,38,.9);
+    }
 
-h1{
-font-size:40px;
-}
+    .textarea{
+      min-height:108px;
+      resize:vertical;
+    }
 
-}
+    .choice-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
 
-</style>
+    .choice{
+      position:relative;
+    }
 
+    .choice input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .choice label{
+      min-height:54px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      border-radius:16px;
+      padding:0 14px;
+      background:rgba(6,16,31,.72);
+      border:1px solid rgba(255,255,255,.12);
+      color:#e8f0ff;
+      font-weight:800;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .choice input:checked + label{
+      border-color:rgba(90,148,255,.8);
+      background:rgba(90,148,255,.15);
+      box-shadow:0 0 0 4px rgba(90,148,255,.12);
+    }
+
+    .hidden{display:none}
+
+    .helper{
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.5;
+      margin-top:2px;
+    }
+
+    .notice{
+      display:none;
+      border-radius:16px;
+      padding:14px 16px;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .notice--error{
+      background:rgba(255,111,111,.12);
+      border:1px solid rgba(255,111,111,.26);
+      color:#ffd8d8;
+    }
+
+    .submit-btn{
+      margin-top:6px;
+    }
+
+    .submit-btn[disabled]{
+      opacity:.72;
+      cursor:not-allowed;
+      transform:none;
+    }
+
+    .privacy{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      text-align:center;
+    }
+
+    .success-box{
+      display:none;
+      margin-top:6px;
+      padding:18px;
+      border-radius:20px;
+      background:rgba(23,199,122,.11);
+      border:1px solid rgba(23,199,122,.24);
+      position:relative;
+      z-index:1;
+    }
+
+    .success-box h3{
+      margin:0 0 10px;
+      font-size:24px;
+    }
+
+    .success-box p{
+      margin:0 0 14px;
+      color:#dff9eb;
+      line-height:1.65;
+    }
+
+    .success-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .section{
+      padding:84px 0 0;
+    }
+
+    .section-head{
+      max-width:780px;
+      margin:0 auto 28px;
+      text-align:center;
+    }
+
+    .section-head h2{
+      margin:0 0 12px;
+      font-size:clamp(34px,4vw,52px);
+      line-height:1.06;
+      letter-spacing:-.04em;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.7;
+    }
+
+    .cards-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .cards-4{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .info-card{
+      padding:24px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .info-card__icon{
+      width:48px;
+      height:48px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:16px;
+      margin-bottom:16px;
+      background:rgba(90,148,255,.15);
+      border:1px solid rgba(90,148,255,.24);
+      font-size:20px;
+    }
+
+    .info-card h3{
+      margin:0 0 10px;
+      font-size:22px;
+      letter-spacing:-.02em;
+    }
+
+    .info-card p,.info-card li{
+      color:var(--muted);
+      line-height:1.7;
+      font-size:15px;
+    }
+
+    .info-card ul{
+      margin:0;
+      padding-left:18px;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .step{
+      padding:26px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .step__num{
+      width:44px;
+      height:44px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:14px;
+      background:linear-gradient(180deg, var(--blue), var(--blue-2));
+      box-shadow:0 12px 24px rgba(37,99,235,.25);
+      font-weight:800;
+      margin-bottom:16px;
+    }
+
+    .step h3{
+      margin:0 0 10px;
+      font-size:22px;
+    }
+
+    .step p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .comparison{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .panel{
+      padding:26px;
+      border-radius:24px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+    }
+
+    .panel h3{
+      margin:0 0 14px;
+      font-size:24px;
+      letter-spacing:-.02em;
+    }
+
+    .panel ul{
+      margin:0;
+      padding-left:18px;
+    }
+
+    .panel li{
+      color:var(--muted);
+      line-height:1.75;
+      margin-bottom:6px;
+    }
+
+    .panel--bad{
+      background:rgba(255,255,255,.035);
+    }
+
+    .faq{
+      display:grid;
+      gap:16px;
+      max-width:900px;
+      margin:0 auto;
+    }
+
+    .faq__item{
+      padding:22px;
+      border-radius:22px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+    }
+
+    .faq__item h3{
+      margin:0 0 10px;
+      font-size:20px;
+    }
+
+    .faq__item p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .final-cta{
+      padding:32px;
+      text-align:center;
+      border-radius:30px;
+      background:
+        radial-gradient(circle at top left, rgba(90,148,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow);
+    }
+
+    .final-cta h2{
+      margin:0 0 12px;
+      font-size:clamp(34px,4vw,48px);
+      line-height:1.08;
+      letter-spacing:-.04em;
+    }
+
+    .final-cta p{
+      max-width:760px;
+      margin:0 auto 18px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:18px;
+    }
+
+    .site-footer{
+      padding:34px 0 42px;
+      color:var(--muted);
+      text-align:center;
+      font-size:14px;
+      line-height:1.65;
+    }
+
+    @media (max-width: 1080px){
+      .hero__grid,
+      .cards-4,
+      .cards-3,
+      .steps,
+      .comparison,
+      .trust-bar{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .form-card{
+        position:relative;
+        top:auto;
+      }
+    }
+
+    @media (max-width: 760px){
+      .site-header__inner{
+        min-height:72px;
+      }
+
+      .nav{
+        display:none;
+      }
+
+      .hero{
+        padding-top:36px;
+      }
+
+      .hero__grid,
+      .cards-4,
+      .cards-3,
+      .steps,
+      .comparison,
+      .grid-2,
+      .choice-row,
+      .trust-bar{
+        grid-template-columns:1fr;
+      }
+
+      h1{
+        font-size:42px;
+      }
+
+      .hero__subtitle,
+      .section-head p,
+      .final-cta p{
+        font-size:17px;
+      }
+
+      .success-actions,
+      .hero__actions{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .form-card{
+        padding:20px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="wrapper">
-
-<div class="hero">
-
-<div>
-
-<div class="brand">AiForBiz</div>
-
-<h1>
-Get a personalized AI audit
-for your business
-</h1>
-
-<div class="subtitle">
-Discover which processes can be automated, where AI can create the fastest ROI, and what to implement first.
-</div>
-
-<div class="features">
-
-<div class="feature">
-Identify repetitive workflows across operations, sales and support
-</div>
-
-<div class="feature">
-Find automation opportunities that can save dozens of hours every month
-</div>
-
-<div class="feature">
-Get practical AI implementation recommendations for your company
-</div>
-
-</div>
-
-<div class="stats">
-
-<div class="stat">
-<strong>3-5</strong>
-Automation opportunities
-</div>
-
-<div class="stat">
-<strong>Fast</strong>
-ROI-focused AI use cases
-</div>
-
-<div class="stat">
-<strong>Clear</strong>
-Implementation roadmap
-</div>
-
-</div>
-
-</div>
-
-<div class="form">
-
-<h2>Request your AI audit</h2>
-
-<p>
-Fill out the form and choose your preferred contact method.
-</p>
-
-<div class="field">
-<input id="name" placeholder="Full name">
-</div>
-
-<div class="field">
-<input id="company" placeholder="Company name">
-</div>
-
-<div class="field">
-<input id="email" placeholder="Work email">
-</div>
-
-<div class="field">
-<input id="website" placeholder="Website">
-</div>
-
-<div class="field">
-<textarea id="business" placeholder="What does your business do?"></textarea>
-</div>
-
-<div class="field">
-<textarea id="problem" placeholder="Biggest bottleneck right now"></textarea>
-</div>
-
-<div class="field">
-<select id="contact">
-<option value="Telegram">Telegram</option>
-<option value="WhatsApp">WhatsApp</option>
-</select>
-</div>
-
-<div class="field">
-<input id="messenger" placeholder="Telegram username or WhatsApp number">
-</div>
-
-<button onclick="sendLead()">Get My AI Audit</button>
-
-<div class="success" id="success">
-
-Request received ✅  
-We will contact you shortly.
-
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-
-<h2>What you'll get</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>Automation Opportunities</h3>
-<p>We identify the processes in your company that can be automated with AI.</p>
-</div>
-
-<div class="card">
-<h3>Priority by ROI</h3>
-<p>See which AI use cases will deliver the biggest return on investment first.</p>
-</div>
-
-<div class="card">
-<h3>Implementation Roadmap</h3>
-<p>Clear steps showing where to start implementing AI in your business.</p>
-</div>
-
-</div>
-
-</div>
-
-<div class="footer">
-
-AiForBiz helps companies discover automation opportunities and implement AI solutions that deliver measurable business value.
-
-</div>
-
-</div>
-
-<script>
-
-const BOT_TOKEN="YOUR_TELEGRAM_BOT_TOKEN"
-const CHAT_ID="YOUR_TELEGRAM_CHAT_ID"
-
-async function sendLead(){
-
-const name=document.getElementById("name").value
-const company=document.getElementById("company").value
-const email=document.getElementById("email").value
-const website=document.getElementById("website").value
-const business=document.getElementById("business").value
-const problem=document.getElementById("problem").value
-const contact=document.getElementById("contact").value
-const messenger=document.getElementById("messenger").value
-
-if(!name||!company||!email){
-
-alert("Please fill required fields")
-
-return
-
-}
-
-const text=
-`🔥 New AI Audit Lead
-
-Name: ${name}
-Company: ${company}
-Email: ${email}
-Website: ${website}
-
-Preferred contact: ${contact}
-Messenger: ${messenger}
-
-Business:
-${business}
-
-Bottleneck:
-${problem}`
-
-await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-
-chat_id:CHAT_ID,
-text:text
-
-})
-
-})
-
-document.getElementById("success").style.display="block"
-
-}
-
-</script>
-
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="#" class="brand" aria-label="AiForBiz home">
+        <span class="brand__mark">AI</span>
+        <span>AiForBiz</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#outcomes">What you get</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#fit">Who it's for</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <a href="#lead-form" class="btn btn-secondary">Request Assessment</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow__dot"></span>
+            Practical AI automation opportunity assessment
+          </div>
+
+          <h1>Find the highest-ROI AI opportunities in your business</h1>
+
+          <p class="hero__subtitle">
+            We identify which workflows you should automate first, where AI can reduce operating costs,
+            and what to prioritize before you waste money on the wrong tools.
+          </p>
+
+          <ul class="hero__points">
+            <li>
+              <span class="icon-badge">⚙️</span>
+              <span>Identify repetitive work across operations, sales, support, admin, and internal workflows.</span>
+            </li>
+            <li>
+              <span class="icon-badge">📈</span>
+              <span>Prioritize AI use cases by practical ROI, not hype, so you know what is actually worth implementing.</span>
+            </li>
+            <li>
+              <span class="icon-badge">🧭</span>
+              <span>Get a clear starting point for implementation based on your business model, bottlenecks, and team reality.</span>
+            </li>
+          </ul>
+
+          <div class="hero__actions">
+            <a href="#lead-form" class="btn btn-primary">Get My AI Assessment</a>
+            <a href="#outcomes" class="btn btn-secondary">See what you'll get</a>
+          </div>
+
+          <div class="hero__micro">
+            Built for service businesses, agencies, operations teams, and growing SMBs that want clarity before investing in AI implementation.
+          </div>
+
+          <div class="trust-bar" aria-label="Audience fit">
+            <div class="trust-chip">Service Businesses</div>
+            <div class="trust-chip">Agencies</div>
+            <div class="trust-chip">Operations Teams</div>
+            <div class="trust-chip">Growing SMBs</div>
+          </div>
+        </div>
+
+        <aside class="card form-card" id="lead-form">
+          <h2 class="form-card__title">Request your assessment</h2>
+          <p class="form-card__text">
+            Fill out the form in under 60 seconds. Work email is required, plus your preferred messenger:
+            Telegram or WhatsApp.
+          </p>
+
+          <div class="mini-proof">
+            <div class="mini-proof__item">
+              <span class="mini-proof__check">✓</span>
+              <span>Clear automation opportunities tailored to your business</span>
+            </div>
+            <div class="mini-proof__item">
+              <span class="mini-proof__check">✓</span>
+              <span>Priority AI use cases ranked by business value</span>
+            </div>
+            <div class="mini-proof__item">
+              <span class="mini-proof__check">✓</span>
+              <span>Practical next steps instead of generic AI advice</span>
+            </div>
+          </div>
+
+          <div class="notice notice--error" id="formError"></div>
+
+          <form id="assessmentForm" novalidate>
+            <div class="grid-2">
+              <div class="field">
+                <label class="label" for="fullName">Full name *</label>
+                <input class="input" id="fullName" name="fullName" type="text" placeholder="John Smith" required>
+              </div>
+
+              <div class="field">
+                <label class="label" for="companyName">Company name *</label>
+                <input class="input" id="companyName" name="companyName" type="text" placeholder="Acme Growth" required>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label class="label" for="email">Work email *</label>
+                <input class="input" id="email" name="email" type="email" placeholder="john@company.com" required>
+              </div>
+
+              <div class="field">
+                <label class="label" for="website">Website</label>
+                <input class="input" id="website" name="website" type="url" placeholder="https://yourcompany.com">
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label class="label" for="companyType">Business type *</label>
+                <select class="select" id="companyType" name="companyType" required>
+                  <option value="">Select one</option>
+                  <option>Agency</option>
+                  <option>Service business</option>
+                  <option>SaaS / Tech-enabled business</option>
+                  <option>Ecommerce</option>
+                  <option>Professional services</option>
+                  <option>Local multi-location business</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label class="label" for="teamSize">Team size</label>
+                <select class="select" id="teamSize" name="teamSize">
+                  <option value="">Select one</option>
+                  <option>1–5</option>
+                  <option>6–20</option>
+                  <option>21–50</option>
+                  <option>51–200</option>
+                  <option>200+</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="priority">What do you most want to improve first? *</label>
+              <select class="select" id="priority" name="priority" required>
+                <option value="">Select one</option>
+                <option>Reduce manual work</option>
+                <option>Improve sales follow-up</option>
+                <option>Speed up support or client response</option>
+                <option>Improve internal operations</option>
+                <option>Automate admin / back-office tasks</option>
+                <option>Find the highest-ROI starting point</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="label" for="bottleneck">Biggest bottleneck right now</label>
+              <textarea class="textarea" id="bottleneck" name="bottleneck" placeholder="Example: lead follow-up is slow, reporting is manual, support is repetitive, ops is overloaded..."></textarea>
+            </div>
+
+            <div class="field">
+              <div class="label">Preferred contact method *</div>
+              <div class="choice-row">
+                <div class="choice">
+                  <input type="radio" id="contactTelegram" name="contactMethod" value="telegram" checked>
+                  <label for="contactTelegram">Telegram</label>
+                </div>
+                <div class="choice">
+                  <input type="radio" id="contactWhatsApp" name="contactMethod" value="whatsapp">
+                  <label for="contactWhatsApp">WhatsApp</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="field" id="telegramField">
+              <label class="label" for="telegramHandle">Telegram username *</label>
+              <input class="input" id="telegramHandle" name="telegramHandle" type="text" placeholder="@yourusername">
+              <div class="helper">Use your Telegram username so we can contact you there.</div>
+            </div>
+
+            <div class="field hidden" id="whatsappField">
+              <label class="label" for="whatsappNumber">WhatsApp number *</label>
+              <input class="input" id="whatsappNumber" name="whatsappNumber" type="text" placeholder="+1 555 123 4567">
+              <div class="helper">Include your country code.</div>
+            </div>
+
+            <input type="hidden" id="utm_source" name="utm_source">
+            <input type="hidden" id="utm_medium" name="utm_medium">
+            <input type="hidden" id="utm_campaign" name="utm_campaign">
+            <input type="hidden" id="utm_content" name="utm_content">
+            <input type="hidden" id="utm_term" name="utm_term">
+            <input type="hidden" id="page_url" name="page_url">
+            <input type="hidden" id="page_referrer" name="page_referrer">
+            <input type="hidden" id="submitted_at" name="submitted_at">
+
+            <button class="btn btn-primary submit-btn" id="submitBtn" type="submit">Get My AI Assessment</button>
+
+            <div class="privacy">
+              We use your information only to review your request and contact you about your assessment. No spam.
+            </div>
+          </form>
+
+          <div class="success-box" id="successBox">
+            <h3>Your request has been received</h3>
+            <p>
+              Thanks — your assessment request is in. To speed things up, you can open your preferred messenger now and send the prewritten message.
+            </p>
+            <div class="success-actions">
+              <a href="#" class="btn btn-primary" id="openMessengerBtn" target="_blank" rel="noopener noreferrer">Open messenger</a>
+              <a href="#outcomes" class="btn btn-secondary">What happens next</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="outcomes">
+      <div class="container">
+        <div class="section-head">
+          <h2>What you'll get</h2>
+          <p>
+            This is not a generic AI report. It is a practical business-focused assessment designed to identify
+            where automation can create the clearest value first.
+          </p>
+        </div>
+
+        <div class="cards-4">
+          <article class="info-card">
+            <div class="info-card__icon">🔎</div>
+            <h3>3–5 strong automation opportunities</h3>
+            <p>We identify the workflows most likely to benefit from AI or automation based on your operating reality.</p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-card__icon">💸</div>
+            <h3>Priority by ROI</h3>
+            <p>You see which opportunities are worth prioritizing first instead of testing random tools.</p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-card__icon">🧩</div>
+            <h3>Practical use-case mapping</h3>
+            <p>We connect pain points to useful AI applications across sales, support, operations, and admin.</p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-card__icon">🚀</div>
+            <h3>Clear next steps</h3>
+            <p>You get a realistic starting point for implementation, not abstract theory or AI buzzwords.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-head">
+          <h2>How it works</h2>
+          <p>
+            A simple process designed for busy founders, operators, and service businesses that need clarity fast.
+          </p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <div class="step__num">1</div>
+            <h3>Submit your request</h3>
+            <p>Tell us about your business, your main priority, and how you want us to contact you.</p>
+          </article>
+
+          <article class="step">
+            <div class="step__num">2</div>
+            <h3>We review your workflows</h3>
+            <p>We look at where repetitive work, delays, manual effort, or operational drag are most likely happening.</p>
+          </article>
+
+          <article class="step">
+            <div class="step__num">3</div>
+            <h3>You get practical guidance</h3>
+            <p>We contact you with the highest-value opportunities, suggested starting points, and likely quick wins.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="fit">
+      <div class="container">
+        <div class="section-head">
+          <h2>Who this is best for</h2>
+          <p>
+            This assessment is especially useful for businesses that know AI matters, but want to start with the right workflows instead of the wrong tools.
+          </p>
+        </div>
+
+        <div class="cards-3">
+          <article class="info-card">
+            <div class="info-card__icon">🏢</div>
+            <h3>Service businesses and agencies</h3>
+            <ul>
+              <li>Client delivery teams</li>
+              <li>Reporting-heavy operations</li>
+              <li>Manual onboarding or account management</li>
+            </ul>
+          </article>
+
+          <article class="info-card">
+            <div class="info-card__icon">🛠</div>
+            <h3>Operations-heavy companies</h3>
+            <ul>
+              <li>Repetitive internal workflows</li>
+              <li>Slow handoffs between people and teams</li>
+              <li>Admin tasks draining execution speed</li>
+            </ul>
+          </article>
+
+          <article class="info-card">
+            <div class="info-card__icon">📊</div>
+            <h3>Founders and managers seeking ROI</h3>
+            <ul>
+              <li>Unsure where AI should start</li>
+              <li>Tired of manual bottlenecks</li>
+              <li>Wanting real business value, not AI theater</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Why most AI projects stall</h2>
+          <p>
+            The problem is rarely a lack of tools. The real problem is choosing the wrong workflows, the wrong sequence, and the wrong place to start.
+          </p>
+        </div>
+
+        <div class="comparison">
+          <div class="panel panel--bad">
+            <h3>What usually goes wrong</h3>
+            <ul>
+              <li>Businesses test random AI tools with no implementation logic</li>
+              <li>Teams get overwhelmed by scattered experiments</li>
+              <li>No one knows which workflow actually matters most</li>
+              <li>ROI stays vague, so momentum disappears</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3>What this assessment helps you do</h3>
+            <ul>
+              <li>Identify the workflows most likely to create business value</li>
+              <li>Prioritize opportunities by speed, practicality, and impact</li>
+              <li>Reduce wasted time on low-value experiments</li>
+              <li>Start implementation from a clearer, more strategic position</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <h2>Frequently asked questions</h2>
+          <p>
+            Clear answers for businesses considering AI automation but wanting a more practical, lower-friction starting point.
+          </p>
+        </div>
+
+        <div class="faq">
+          <article class="faq__item">
+            <h3>Is this for large companies only?</h3>
+            <p>No. It is especially useful for small and mid-sized businesses that want to move faster without building a large internal AI team first.</p>
+          </article>
+
+          <article class="faq__item">
+            <h3>Do I need to know which AI tools I want?</h3>
+            <p>No. The point is to identify where AI can help before making tool decisions, so you do not waste time on the wrong stack.</p>
+          </article>
+
+          <article class="faq__item">
+            <h3>What kinds of workflows can be assessed?</h3>
+            <p>Typical areas include lead handling, client communication, support, reporting, internal ops, admin tasks, and repetitive process execution.</p>
+          </article>
+
+          <article class="faq__item">
+            <h3>What happens after I submit the form?</h3>
+            <p>Your request is sent for review, and we contact you through your preferred messenger using the details you provide.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="final-cta">
+          <h2>Start with the right AI opportunities</h2>
+          <p>
+            Request your assessment and find where AI can realistically save time, reduce operating costs, and improve execution in your business.
+          </p>
+          <a href="#lead-form" class="btn btn-primary">Request My Assessment</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      AiForBiz helps businesses identify practical automation opportunities and prioritize AI use cases with real operating value.
+    </div>
+  </footer>
+
+  <script>
+    const WEBHOOK_URL = "YOUR_WEBHOOK_URL";
+    const TELEGRAM_MANAGER = "YOUR_TELEGRAM_USERNAME";
+    const WHATSAPP_MANAGER = "YOUR_WHATSAPP_NUMBER";
+
+    const form = document.getElementById("assessmentForm");
+    const formError = document.getElementById("formError");
+    const submitBtn = document.getElementById("submitBtn");
+    const successBox = document.getElementById("successBox");
+    const openMessengerBtn = document.getElementById("openMessengerBtn");
+
+    const telegramField = document.getElementById("telegramField");
+    const whatsappField = document.getElementById("whatsappField");
+    const telegramHandle = document.getElementById("telegramHandle");
+    const whatsappNumber = document.getElementById("whatsappNumber");
+
+    const contactTelegram = document.getElementById("contactTelegram");
+    const contactWhatsApp = document.getElementById("contactWhatsApp");
+
+    function setFieldVisibility() {
+      const contactMethod = document.querySelector('input[name="contactMethod"]:checked')?.value;
+
+      if (contactMethod === "whatsapp") {
+        whatsappField.classList.remove("hidden");
+        telegramField.classList.add("hidden");
+        whatsappNumber.required = true;
+        telegramHandle.required = false;
+      } else {
+        telegramField.classList.remove("hidden");
+        whatsappField.classList.add("hidden");
+        telegramHandle.required = true;
+        whatsappNumber.required = false;
+      }
+    }
+
+    function getQueryParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name) || "";
+    }
+
+    function populateTrackingFields() {
+      document.getElementById("utm_source").value = getQueryParam("utm_source");
+      document.getElementById("utm_medium").value = getQueryParam("utm_medium");
+      document.getElementById("utm_campaign").value = getQueryParam("utm_campaign");
+      document.getElementById("utm_content").value = getQueryParam("utm_content");
+      document.getElementById("utm_term").value = getQueryParam("utm_term");
+      document.getElementById("page_url").value = window.location.href;
+      document.getElementById("page_referrer").value = document.referrer || "";
+      document.getElementById("submitted_at").value = new Date().toISOString();
+    }
+
+    function showError(message) {
+      formError.textContent = message;
+      formError.style.display = "block";
+    }
+
+    function hideError() {
+      formError.textContent = "";
+      formError.style.display = "none";
+    }
+
+    function validateForm(data) {
+      if (!data.fullName.trim()) return "Please enter your full name.";
+      if (!data.companyName.trim()) return "Please enter your company name.";
+      if (!data.email.trim()) return "Please enter your work email.";
+      if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(data.email.trim())) return "Please enter a valid email address.";
+      if (!data.companyType.trim()) return "Please select your business type.";
+      if (!data.priority.trim()) return "Please select what you want to improve first.";
+
+      if (data.contactMethod === "telegram" && !data.telegramHandle.trim()) {
+        return "Please enter your Telegram username.";
+      }
+
+      if (data.contactMethod === "whatsapp" && !data.whatsappNumber.trim()) {
+        return "Please enter your WhatsApp number.";
+      }
+
+      return "";
+    }
+
+    function createFollowUpMessage() {
+      return encodeURIComponent(
+`Hello!
+
+I just submitted my AI assessment request on your website.
+
+I'm interested in:
+• identifying which workflows can be automated
+• finding the highest-ROI AI opportunities
+• understanding where implementation should start first
+
+Thank you!`
+      );
+    }
+
+    async function submitLead(payload) {
+      if (!WEBHOOK_URL || WEBHOOK_URL === "YOUR_WEBHOOK_URL") {
+        throw new Error("Webhook URL is not configured yet.");
+      }
+
+      const response = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      let result = {};
+      try {
+        result = await response.json();
+      } catch (e) {
+        result = {};
+      }
+
+      if (!response.ok || result.success === false) {
+        throw new Error(result.message || "The form could not be submitted right now.");
+      }
+
+      return result;
+    }
+
+    contactTelegram.addEventListener("change", setFieldVisibility);
+    contactWhatsApp.addEventListener("change", setFieldVisibility);
+
+    populateTrackingFields();
+    setFieldVisibility();
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      hideError();
+      populateTrackingFields();
+
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
+
+      const validationError = validateForm(payload);
+      if (validationError) {
+        showError(validationError);
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting request...";
+
+      try {
+        await submitLead(payload);
+
+        form.style.display = "none";
+        successBox.style.display = "block";
+
+        const followUpMessage = createFollowUpMessage();
+        const messengerLink =
+          payload.contactMethod === "whatsapp"
+            ? `https://wa.me/${WHATSAPP_MANAGER}?text=${followUpMessage}`
+            : `https://t.me/${TELEGRAM_MANAGER}?text=${followUpMessage}`;
+
+        openMessengerBtn.href = messengerLink;
+        openMessengerBtn.textContent =
+          payload.contactMethod === "whatsapp" ? "Open WhatsApp" : "Open Telegram";
+
+      } catch (error) {
+        showError(error.message || "Something went wrong while submitting the form.");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Get My AI Assessment";
+      }
+    });
+  </script>
 </body>
 </html>
